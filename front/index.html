@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Libros - CRUD</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Sistema de Gestión de Libros</h1>
+            <p>CRUD Completo - Altas, Bajas, Cambios y Consultas</p>
+        </header>
+
+        <nav class="menu">
+            <button class="menu-btn active" onclick="mostrarSeccion('alta')">➕ Alta</button>
+            <button class="menu-btn" onclick="mostrarSeccion('baja')">➖ Baja</button>
+            <button class="menu-btn" onclick="mostrarSeccion('cambio')">✏️ Cambio</button>
+            <button class="menu-btn" onclick="mostrarSeccion('consulta')">🔍 Consulta</button>
+        </nav>
+
+        <!-- Sección de Alta -->
+        <section id="alta" class="seccion activa">
+            <h2>Alta de Libro</h2>
+            <form id="formAlta" class="formulario">
+                <div class="form-group">
+                    <label for="altaTitle">Título:</label>
+                    <input type="text" id="altaTitle" name="title" required placeholder="Ingrese el título del libro">
+                </div>
+                <div class="form-group">
+                    <label for="altaAutor">Autor:</label>
+                    <input type="text" id="altaAutor" name="autor" required placeholder="Ingrese el nombre del autor">
+                </div>
+                <button type="submit" class="btn btn-primary">Agregar Libro</button>
+            </form>
+            <div id="mensajeAlta" class="mensaje"></div>
+        </section>
+
+        <!-- Sección de Baja -->
+        <section id="baja" class="seccion">
+            <h2>Baja de Libro</h2>
+            <form id="formBaja" class="formulario">
+                <div class="form-group">
+                    <label for="bajaId">ID del Libro:</label>
+                    <input type="number" id="bajaId" name="id" required placeholder="Ingrese el ID del libro a eliminar" min="1">
+                </div>
+                <button type="submit" class="btn btn-danger">Eliminar Libro</button>
+            </form>
+            <div id="mensajeBaja" class="mensaje"></div>
+        </section>
+
+        <!-- Sección de Cambio -->
+        <section id="cambio" class="seccion">
+            <h2>Modificación de Libro</h2>
+            <form id="formCambio" class="formulario">
+                <div class="form-group">
+                    <label for="cambioId">ID del Libro:</label>
+                    <input type="number" id="cambioId" name="id" required placeholder="Ingrese el ID del libro a modificar" min="1">
+                </div>
+                <div class="form-group">
+                    <label for="cambioTitle">Nuevo Título:</label>
+                    <input type="text" id="cambioTitle" name="title" required placeholder="Ingrese el nuevo título">
+                </div>
+                <div class="form-group">
+                    <label for="cambioAutor">Nuevo Autor:</label>
+                    <input type="text" id="cambioAutor" name="autor" required placeholder="Ingrese el nuevo autor">
+                </div>
+                <button type="submit" class="btn btn-warning">Actualizar Libro</button>
+            </form>
+            <div id="mensajeCambio" class="mensaje"></div>
+        </section>
+
+        <!-- Sección de Consulta -->
+        <section id="consulta" class="seccion">
+            <h2>Consulta de Libros</h2>
+            <div class="consulta-controls">
+                <button onclick="consultarTodos()" class="btn btn-info">Consultar Todos los Libros</button>
+                <div class="consulta-individual">
+                    <input type="number" id="consultaId" placeholder="ID del libro" min="1">
+                    <button onclick="consultarPorId()" class="btn btn-info">Consultar por ID</button>
+                </div>
+            </div>
+            <div id="resultadoConsulta" class="resultado-consulta"></div>
+        </section>
+    </div>
+
+    <!-- Modal de Confirmación para Eliminar -->
+    <div id="modalEliminar" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>⚠️ Confirmar Eliminación</h3>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro de que desea eliminar el siguiente libro?</p>
+                <div class="libro-info">
+                    <p><strong>ID:</strong> <span id="modalLibroId"></span></p>
+                    <p><strong>Título:</strong> <span id="modalLibroTitle"></span></p>
+                    <p><strong>Autor:</strong> <span id="modalLibroAutor"></span></p>
+                </div>
+                <p class="advertencia">Esta acción no se puede deshacer.</p>
+            </div>
+            <div class="modal-footer">
+                <button id="btnCancelarEliminar" class="btn btn-cancelar">Cancelar</button>
+                <button id="btnConfirmarEliminar" class="btn btn-danger">Sí, Eliminar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
