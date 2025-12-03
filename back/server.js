@@ -6,8 +6,6 @@ const cors = require('cors');
 
 app.use(cors({
   origin: "*",   // puedes poner "*" o la URL exacta de Netlify
-  methods: "GET,POST,PUT,DELETE",
-  credentials: true
 }));
 
 const booksRoutes = require('./routes/booksRoutes');
