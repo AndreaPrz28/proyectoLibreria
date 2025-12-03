@@ -4,10 +4,6 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 
-app.use(cors({
-  origin: "*",   // puedes poner "*" o la URL exacta de Netlify
-}));
-
 const booksRoutes = require('./routes/booksRoutes');
 const pool = require('./db/conexion'); // <-- Importamos la conexión
 
