@@ -1,5 +1,5 @@
 // URL base de la API - Ajusta el puerto si es necesario
-const API_BASE_URL = 'https://proyectolibreria-fwgx.onrender.com';
+const API_BASE_URL = 'https://proyectolibreria-fwgx.onrender.com/api/books';
 
 // Función para mostrar/ocultar secciones
 function mostrarSeccion(seccion) {
